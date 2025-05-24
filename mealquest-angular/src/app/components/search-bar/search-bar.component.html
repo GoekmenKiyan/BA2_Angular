@@ -1,0 +1,35 @@
+<form (submit)="submit()" class="flex flex-wrap items-center gap-4 justify-center bg-white p-6 rounded-xl shadow-lg">
+  <input
+    type="text"
+    [(ngModel)]="query"
+    name="query"
+    placeholder="Was möchtest du kochen?"
+    class="px-4 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 w-60"
+  />
+
+  <select
+    [(ngModel)]="diet"
+    name="diet"
+    class="px-4 py-2 border border-zinc-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+  >
+    <option value="">Alle Diäten</option>
+    <option value="vegan">Vegan</option>
+    <option value="vegetarian">Vegetarisch</option>
+    <option value="gluten free">Glutenfrei</option>
+  </select>
+
+  <select
+    [(ngModel)]="sort"
+    name="sort"
+    class="px-4 py-2 border border-zinc-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+  >
+    <option value="">Sortierung</option>
+    <option value="popularity">Beliebtheit</option>
+    <option value="healthiness">Gesundheit</option>
+    <option value="time">Zubereitungszeit</option>
+  </select>
+
+  <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 h-[42px] flex items-center gap-2 rounded-md font-semibold shadow-md transition">
+    🔍 <span>Suchen</span>
+  </button>
+</form>

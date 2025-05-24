@@ -1,0 +1,65 @@
+<div *ngIf="loading()" class="text-center mt-10 text-zinc-500">Lade Rezept...</div>
+<div *ngIf="!loading() && recipe()" class="max-w-4xl mx-auto px-6 py-10 text-zinc-800">
+
+  <p class="text-sm text-orange-600 uppercase tracking-wide text-center">
+    {{ recipe().dishTypes?.join(' • ') }}
+  </p>
+
+  <h1 class="text-3xl font-bold mt-2 text-center">{{ recipe().title }}</h1>
+
+  <img
+    [src]="recipe().image"
+    [alt]="recipe().title"
+    class="w-full rounded-xl my-6 shadow-md"
+  />
+
+  <!-- Tabs -->
+  <div class="flex justify-center gap-6 mb-8">
+    <button
+      (click)="switchTab('instructions')"
+      [class]="activeTab() === 'instructions' ? 'text-orange-600 border-b-2 border-orange-500' : 'text-zinc-400'"
+      class="pb-2 font-medium text-md"
+    >
+      Instructions
+    </button>
+    <button
+      (click)="switchTab('ingredients')"
+      [class]="activeTab() === 'ingredients' ? 'text-orange-600 border-b-2 border-orange-500' : 'text-zinc-400'"
+      class="pb-2 font-medium text-md"
+    >
+      Ingredients
+    </button>
+  </div>
+
+  <!-- Content Switch -->
+  <div *ngIf="activeTab() === 'instructions'" class="prose max-w-none">
+    <div [innerHTML]="recipe().summary"></div>
+    <h3 class="mt-6 text-lg font-bold">Zubereitung</h3>
+    <div
+      class="mt-2"
+      [innerHTML]="recipe().instructions || '<p>Keine Anweisungen verfügbar.</p>'"
+    ></div>
+  </div>
+
+  <div *ngIf="activeTab() === 'ingredients'" class="text-left mt-6">
+    <h3 class="text-lg font-bold mb-4">Zutaten</h3>
+    <ul class="list-disc list-inside space-y-1">
+      <li *ngFor="let ingr of recipe().extendedIngredients">{{ ingr.original }}</li>
+    </ul>
+
+    <h3 class="text-md font-bold mt-6">Nährwerte</h3>
+    <p>Kalorien: {{ getCalories() }}</p>
+  </div>
+
+  <button
+    (click)="toggleFavorite(recipe)"
+    class="w-full px-4 py-2 rounded-md font-semibold text-lg transition"
+    [ngClass]="{
+    'bg-red-600 text-white hover:bg-red-700': isFavorite(),
+    'bg-indigo-100 text-indigo-700 hover:bg-indigo-200': !isFavorite()
+  }"
+  >
+    {{ isFavorite() ? '❤️ Aus Favoriten entfernen' : '🤍 Zu Favoriten hinzufügen' }}
+  </button>
+
+</div>

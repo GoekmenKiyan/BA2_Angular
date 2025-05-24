@@ -1,0 +1,24 @@
+<div class="p-8">
+  <h2 class="text-2xl font-bold mb-4">Suchergebnisse</h2>
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+    *ngIf="recipes().length > 0"
+  >
+    <div
+      *ngFor="let recipe of recipes()"
+      class="bg-white shadow rounded-lg overflow-hidden"
+      [routerLink]="['/recipe', recipe.id]"
+    >
+      <img [src]="recipe.image" [alt]="recipe.title" class="w-full h-48 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">{{ recipe.title }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="loading()" class="text-center mt-8 text-zinc-500">Lade mehr Rezepte...</p>
+  <p *ngIf="!loading() && recipes().length === 0" class="text-center mt-8 text-zinc-500">
+    Keine Ergebnisse gefunden.
+  </p>
+</div>
