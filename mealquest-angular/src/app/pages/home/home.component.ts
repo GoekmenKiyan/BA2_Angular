@@ -21,4 +21,8 @@ export class HomeComponent {
     this.router.navigateByUrl(`/search?${params.toString()}`);
   }
 
+  navigateToFavorites() {
+    this.router.navigate(['/favorites']);
+  }
+
 }

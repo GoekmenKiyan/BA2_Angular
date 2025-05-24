@@ -57,4 +57,5 @@ export class RecipeDetailComponent implements OnInit {
   switchTab(tab: 'instructions' | 'ingredients') {
     this.activeTab.set(tab);
   }
+
 }

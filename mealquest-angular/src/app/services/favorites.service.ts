@@ -4,9 +4,9 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class FavoritesService {
-  private favs = signal<number[]>(this.loadFromStorage());
+  private favs = signal<any[]>(this.loadFromStorage());
 
-  private loadFromStorage(): number[] {
+  private loadFromStorage(): any[] {
     return JSON.parse(localStorage.getItem('favorites') || '[]');
   }
 
@@ -15,19 +15,20 @@ export class FavoritesService {
   }
 
   get favorites() {
-    return this.favs;
+    return this.favs();
   }
 
   isFavorite(id: number): boolean {
-    return this.favs().includes(id);
+    return this.favs().some(r => r.id === id);
   }
 
-  toggleFavorite(id: number) {
+  toggleFavorite(recipe: any) {
     const current = this.favs();
-    if (current.includes(id)) {
-      this.favs.set(current.filter(i => i !== id));
+    const exists = current.find(r => r.id === recipe.id);
+    if (exists) {
+      this.favs.set(current.filter(r => r.id !== recipe.id));
     } else {
-      this.favs.set([...current, id]);
+      this.favs.set([...current, recipe]);
     }
     this.saveToStorage();
   }

@@ -1,1 +1,20 @@
-<p>favorites works!</p>
+<div class="p-6 max-w-6xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center text-zinc-800">❤️ Meine Favoriten</h1>
+
+  <p *ngIf="favorites.length === 0" class="text-center text-zinc-500">
+    Du hast noch keine Favoriten gespeichert.
+  </p>
+
+  <div *ngIf="favorites.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div
+      *ngFor="let recipe of favorites"
+      [routerLink]="['/recipe', recipe.id]"
+      class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition"
+    >
+      <img [src]="recipe.image" [alt]="recipe.title" class="w-full h-48 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-center">{{ recipe.title }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
