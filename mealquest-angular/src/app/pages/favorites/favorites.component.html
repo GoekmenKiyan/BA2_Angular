@@ -5,6 +5,15 @@
     Du hast noch keine Favoriten gespeichert.
   </p>
 
+  <div class="text-center mt-10" *ngIf="favorites.length > 0">
+    <button
+      (click)="downloadPDF()"
+      class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold shadow"
+    >
+      📄 Als PDF exportieren
+    </button>
+  </div>
+
   <div *ngIf="favorites.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     <div
       *ngFor="let recipe of favorites"
