@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {CommonModule} from '@angular/common';
+import { RandomPicksComponent } from '../random-picks/random-picks.component';
+import { VegetarianPicksComponent } from '../vegetarian-picks/vegetarian-picks.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SearchBarComponent],
+  imports: [
+    CommonModule,
+    SearchBarComponent,
+    RandomPicksComponent,
+    VegetarianPicksComponent,
+  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+
 })
 export class HomeComponent {
   constructor(private router: Router) {}
