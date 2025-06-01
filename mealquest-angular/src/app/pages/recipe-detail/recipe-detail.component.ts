@@ -18,7 +18,7 @@ export class RecipeDetailComponent implements OnInit {
 
   isFavorite = computed(() => {
     const value = this.recipe();
-    return value && this.favService.isFavorite(value);
+    return value && this.favService.isFavorite(value.id);
   });
 
   constructor(
@@ -50,9 +50,11 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   toggleFavorite() {
-    const value = this.recipe();
-    if (value) this.favService.toggleFavorite(value);
+  const value = this.recipe();
+  if (value) {
+    this.favService.toggleFavorite(value);
   }
+}
 
   switchTab(tab: 'instructions' | 'ingredients') {
     this.activeTab.set(tab);

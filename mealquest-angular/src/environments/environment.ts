@@ -1,3 +1,3 @@
 export const environment = {
-  apiKey: 'c920d36fe6fd445ab7654325c0e65f18',
+  apiKey: 'f84fd15d8b4b4235a3d1b71269d2c9b1',
 };
