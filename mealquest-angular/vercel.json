@@ -2,17 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "angular.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/mealquest-angular"
-      }
+      "src": "mealquest-angular/package.json",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "mealquest-angular/dist/mealquest-angular/index.html"
     }
   ]
 }
